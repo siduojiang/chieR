@@ -23,7 +23,7 @@ sqlConnect <- function(server){
   server              <- paste0(server, serverSuffix)
   clientID            <- AzureKeyVault::key_vault(idURL, as_managed_identity = managedID)$secrets$get(tail(strsplit(idURL, "/")[[1]], 1))$value
   clientSecret        <- AzureKeyVault::key_vault(secretURL, as_managed_identity = managedID)$secrets$get(tail(strsplit(secretURL, "/")[[1]], 1))$value
-  connectionStringSQL <- sprintf("Driver={ODBC Driver 18 for SQL Server};Server=tcp:%s,1433;Database=%s;UID=%s;PWD=%s;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=15;Authentication=ActiveDirectoryServicePrincipal",
+  connectionStringSQL <- sprintf("Driver={ODBC Driver 17 for SQL Server};Server=tcp:%s,1433;Database=%s;UID=%s;PWD=%s;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=15;Authentication=ActiveDirectoryServicePrincipal",
                                  server,
                                  database,
                                  clientID,
